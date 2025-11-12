@@ -2,9 +2,10 @@ import com.shaft.driver.SHAFT;
 import org.openqa.selenium.By;
 
 public class LoginPage {
+    SHAFT.TestData.JSON loginCred = new SHAFT.TestData.JSON("credentials.json");
 
-    private final String validEmail = ("");
-    private final String validPassword = ("");
+    private final String validEmail = loginCred.getTestData("validEmail");
+    private final String validPassword = loginCred.getTestData("validPassword");
 
     private final By emailInput = By.id("email");
     private final By passwordInput = By.id("password");
