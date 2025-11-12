@@ -1,3 +1,5 @@
+package Pages;
+
 import com.shaft.driver.SHAFT;
 import org.openqa.selenium.By;
 
