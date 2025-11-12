@@ -10,6 +10,7 @@ public class LoginPage {
     private final By emailInput = By.id("email");
     private final By passwordInput = By.id("password");
     private final By loginButton = By.xpath("//button[contains(text(),'Login')]");
+    private final By continueButton = By.xpath("//button[contains(text(),'Continue')]");
 
     private final SHAFT.GUI.WebDriver driver;
 
@@ -18,12 +19,14 @@ public class LoginPage {
     }
 
     public LoginPage navigateToLoginPage() {
-        driver.browser().navigateToURL("");
+        String loginURL = "https://www.planradar.com/login/";
+        driver.browser().navigateToURL(loginURL);
         return this;
     }
 
     public LoginPage login() {
         driver.element().type(emailInput, validEmail);
+        driver.element().click(continueButton);
         driver.element().type(passwordInput, validPassword);
         driver.element().click(loginButton);
         return this;
