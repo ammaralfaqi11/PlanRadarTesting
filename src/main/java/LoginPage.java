@@ -24,11 +24,11 @@ public class LoginPage {
         return this;
     }
 
-    public LoginPage login() {
+    public DashboardPage login() {
         driver.element().type(emailInput, validEmail);
         driver.element().click(continueButton);
         driver.element().type(passwordInput, validPassword);
         driver.element().click(loginButton);
-        return this;
+        return new DashboardPage(driver);
     }
 }
