@@ -12,15 +12,9 @@ public class FormsPage {
     private final By shortTextFieldNameInput = By.xpath("//textarea[@data-id='Setup_Forms_shorttext_Name']");
     private final By shortTextFieldDescriptionInput = By.xpath("//textarea[@data-id='Setup_Forms_shorttext_Description']");
     private final By shortTextFieldDefaultInput = By.xpath("//input[@data-id='Setup_Forms_ShortText_DefaultValue']");
-    private final By shortTextFieldMandatoryInput = By.xpath("//span[contains(.,'Mandatory')]/parent::label");
 
-
-
-    private final By checkboxField = By.xpath("//div[@data-testid='ticket_type_form_field_Checkbox']");
-    private final By checkboxFieldNameInput = By.xpath("//textarea[@data-id='Setup_Forms_checkbox_Name']");
-
-    private final By listField = By.xpath("//div[@data-testid='ticket_type_form_field_List']");
-    private final By priorityField = By.xpath("//div[@data-testid='ticket_type_form_field_Priority']");
+    private final By previewFormButton = By.xpath("//button[@data-id='setup_forms_preview']");
+    private final By closePreviewFormButton = By.xpath("//button[@data-id='Forms_FormPreview_Close']");
     private final By saveFormButton = By.xpath("//button[@data-id='setup_forms_save']");
     private final By closeFormButton = By.xpath("//button[@data-testid='setup_forms_close_button']");
     private final By successMessage = By.xpath("//p[contains(.,'This form has been successfully created.')]");
@@ -45,30 +39,25 @@ public class FormsPage {
         driver.element().click(shortTextField);
         return this;
     }
+
     public FormsPage typeShortTextFieldNameAndDescription() {
         driver.element().type(shortTextFieldNameInput, "Test Short Text Field Name");
         driver.element().type(shortTextFieldDescriptionInput, "Test Short Text Field Description");
         return this;
     }
 
-    public FormsPage makeShortTextFieldMandatory(){
-        driver.element().click(shortTextFieldMandatoryInput);
+    public FormsPage typeDefaultValueInShortTextField(String defaultShortFieldValue) {
+        driver.element().type(shortTextFieldDefaultInput, defaultShortFieldValue);
         return this;
     }
 
-    public FormsPage clickCheckboxField() {
-        driver.element().click(checkboxField);
-        return this;
-    }
-    
-    public FormsPage clickListField() {
-        driver.element().click(listField);
+    public FormsPage clickClosePreviewFormButton() {
+        driver.element().click(closePreviewFormButton);
         return this;
     }
 
-    public FormsPage clickPriorityField() {
-        driver.element().click(priorityField);
-        return this;
+    public void clickPreviewFormButton() {
+        driver.element().click(previewFormButton);
     }
 
     public FormsPage clickSaveFormButton() {
@@ -77,11 +66,15 @@ public class FormsPage {
         return this;
     }
 
-    public void clickCloseFormButton(){
+    public void clickCloseFormButton() {
         driver.element().click(closeFormButton);
     }
 
-    public By getFormNameLocator(String formName){
+    public By getFormNameLocator(String formName) {
         return By.xpath("//div[@role='gridcell']//span[contains(.,'" + formName + "')]");
+    }
+
+    public By getShortTextFieldInputInFormReview(String defaultText) {
+        return By.xpath("//input[@data-testid='ticket_form_field_Test_Short_Text_Field_Name'][@value='" + defaultText + "']");
     }
 }

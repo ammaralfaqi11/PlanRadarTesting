@@ -8,9 +8,10 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-public class ValidateMandatoryFieldsTest {
+public class ValidateDefaultValueAppearanceTest {
     SHAFT.GUI.WebDriver driver;
     private static final String formName = "Test Form name " + System.currentTimeMillis();
+    String defaultShortTextValue = "Test Default Text";
 
     @BeforeMethod
     public void setUp() {
@@ -18,7 +19,7 @@ public class ValidateMandatoryFieldsTest {
     }
 
     @Test
-    public void createNewForm() {
+    public void createNewFormWithDefaultValue() {
         new LoginPage(driver)
                 .navigateToLoginPage()
                 .login()
@@ -28,8 +29,14 @@ public class ValidateMandatoryFieldsTest {
                 .typeFormName(formName)
                 .clickShortTextField()
                 .typeShortTextFieldNameAndDescription()
-                .makeShortTextFieldMandatory()
+                .typeDefaultValueInShortTextField(defaultShortTextValue)
                 .clickSaveFormButton()
+                .clickPreviewFormButton();
+
+        driver.verifyThat().element(new FormsPage(driver).getShortTextFieldInputInFormReview(defaultShortTextValue)).isVisible();
+
+        new FormsPage(driver)
+                .clickClosePreviewFormButton()
                 .clickCloseFormButton();
 
         driver.verifyThat().element(new FormsPage(driver).getFormNameLocator(formName)).isVisible();
