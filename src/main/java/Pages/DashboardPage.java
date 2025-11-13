@@ -7,6 +7,7 @@ public class DashboardPage {
 
     private final By formsAndListsButton = By.xpath("//div[@data-testid='navigation_formsandlists']");
     private final By formsPageButton = By.xpath("//div[@data-testid='navigation_forms']");
+    private final By sideMenuTicketsButton = By.xpath("//div[@data-testid='navigation_tickets']");
 
     private final SHAFT.GUI.WebDriver driver;
 
@@ -22,6 +23,11 @@ public class DashboardPage {
     public FormsPage clickFormsPageButton() {
         driver.element().click(formsPageButton);
         return new FormsPage(driver);
+    }
+
+    public TicketsPage clickTicketsButton() {
+        driver.element().click(sideMenuTicketsButton);
+        return new TicketsPage(driver);
     }
 
 }
