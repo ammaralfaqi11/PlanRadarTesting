@@ -132,6 +132,6 @@ public class FormsPage {
      * @return By locator for the short text field input with the specified default value
      */
     public By getShortTextFieldInputInFormReview(String defaultText) {
-        return By.xpath("//input[@data-testid='ticket_form_field_Test_Short_Text_Field_Name'][@value='" + defaultText + "']");
+        return By.xpath("//input[@value='" + defaultText + "']");
     }
 }
