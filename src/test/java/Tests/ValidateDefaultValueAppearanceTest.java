@@ -9,16 +9,18 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class ValidateDefaultValueAppearanceTest {
-    SHAFT.GUI.WebDriver driver;
+    private SHAFT.GUI.WebDriver driver;
     private static final String formName = "Test Form name " + System.currentTimeMillis();
-    String defaultShortTextValue = "Test Default Text";
+    private static final String defaultShortTextValue = "Test Default Text";
+    private static final String shortTextFieldName = "Test Short Text Field Name";
+    private static final String shortTextFieldDescription = "Test Short Text Field Description";
 
     @BeforeMethod
     public void setUp() {
         driver = new SHAFT.GUI.WebDriver();
     }
 
-    @Test
+    @Test(description = "Create a form with a default value for short text field and verify it appears in preview")
     public void createNewFormWithDefaultValue() {
         new LoginPage(driver)
                 .navigateToLoginPage()
@@ -28,7 +30,7 @@ public class ValidateDefaultValueAppearanceTest {
                 .clickCreateFormButton()
                 .typeFormName(formName)
                 .clickShortTextField()
-                .typeShortTextFieldNameAndDescription()
+                .typeShortTextFieldNameAndDescription(shortTextFieldName, shortTextFieldDescription)
                 .typeDefaultValueInShortTextField(defaultShortTextValue)
                 .clickSaveFormButton()
                 .clickPreviewFormButton();

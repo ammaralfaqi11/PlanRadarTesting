@@ -20,12 +20,23 @@ public class LoginPage {
         this.driver = driver;
     }
 
+    /**
+     * Navigates to the login page URL.
+     *
+     * @return LoginPage instance for method chaining
+     */
     public LoginPage navigateToLoginPage() {
         String loginURL = "https://www.planradar.com/login/";
         driver.browser().navigateToURL(loginURL);
         return this;
     }
 
+    /**
+     * Performs the login operation by entering email and password credentials.
+     * After successful login, navigates to the Dashboard page.
+     *
+     * @return DashboardPage instance after successful login
+     */
     public DashboardPage login() {
         driver.element().type(emailInput, validEmail);
         driver.element().click(continueButton);
