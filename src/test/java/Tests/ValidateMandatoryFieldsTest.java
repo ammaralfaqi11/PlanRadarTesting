@@ -28,6 +28,7 @@ public class ValidateMandatoryFieldsTest {
                 .typeFormName(formName)
                 .clickShortTextField()
                 .typeShortTextFieldNameAndDescription()
+                .makeShortTextFieldMandatory()
                 .clickSaveFormButton()
                 .clickCloseFormButton();
 

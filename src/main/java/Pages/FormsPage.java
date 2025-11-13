@@ -11,6 +11,9 @@ public class FormsPage {
     private final By shortTextField = By.xpath("//div[@data-testid='ticket_type_form_field_Short Text']");
     private final By shortTextFieldNameInput = By.xpath("//textarea[@data-id='Setup_Forms_shorttext_Name']");
     private final By shortTextFieldDescriptionInput = By.xpath("//textarea[@data-id='Setup_Forms_shorttext_Description']");
+    private final By shortTextFieldDefaultInput = By.xpath("//input[@data-id='Setup_Forms_ShortText_DefaultValue']");
+    private final By shortTextFieldMandatoryInput = By.xpath("//span[contains(.,'Mandatory')]/parent::label");
+
 
 
     private final By checkboxField = By.xpath("//div[@data-testid='ticket_type_form_field_Checkbox']");
@@ -20,6 +23,7 @@ public class FormsPage {
     private final By priorityField = By.xpath("//div[@data-testid='ticket_type_form_field_Priority']");
     private final By saveFormButton = By.xpath("//button[@data-id='setup_forms_save']");
     private final By closeFormButton = By.xpath("//button[@data-testid='setup_forms_close_button']");
+    private final By successMessage = By.xpath("//p[contains(.,'This form has been successfully created.')]");
 
     private final SHAFT.GUI.WebDriver driver;
 
@@ -47,6 +51,11 @@ public class FormsPage {
         return this;
     }
 
+    public FormsPage makeShortTextFieldMandatory(){
+        driver.element().click(shortTextFieldMandatoryInput);
+        return this;
+    }
+
     public FormsPage clickCheckboxField() {
         driver.element().click(checkboxField);
         return this;
@@ -64,6 +73,7 @@ public class FormsPage {
 
     public FormsPage clickSaveFormButton() {
         driver.element().click(saveFormButton);
+        driver.element().assertThat(successMessage).isVisible();
         return this;
     }
 
