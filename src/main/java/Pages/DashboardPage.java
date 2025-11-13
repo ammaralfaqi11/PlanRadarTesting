@@ -19,8 +19,9 @@ public class DashboardPage {
         return this;
     }
 
-    public void clickFormsPageButton() {
+    public FormsPage clickFormsPageButton() {
         driver.element().click(formsPageButton);
+        return new FormsPage(driver);
     }
 
 }
